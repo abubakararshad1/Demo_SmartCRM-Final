@@ -77,6 +77,7 @@ Create Contact TCL
         Input Text     ${SEARCH_CONTACT_DROPDOWN_XPATH}   ${CONTACT_NAME}
         Wait Until Element Is Visible    ${TCL_SEARCH_CONTACT_DROPDOWN_OPTIONS_XPATH}  10s
         Click Element    ${TCL_SEARCH_CONTACT_OPTION_XPATH}
+        Sleep    5s
         Input Text     ${SEARCH_USER_DROPDOWN_XPATH}   ${SEARCH_USER_TEXT}
         Wait Until Element Is Visible    ${TCL_SEARCH_USER_DROPDOWN_OPTIONS_XPATH}  10s
         Click Element    ${TCL_SEARCH_USER_OPTION_XPATH}

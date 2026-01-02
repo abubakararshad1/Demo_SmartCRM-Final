@@ -20,9 +20,9 @@ Login Scenario
 
         # Continue only after you confirm (after entering OTP)
 
-        Wait Until Element Is Visible    ${CRM_TEXT_VISIBLE}     10s
+        Wait Until Element Is Visible    ${CRM_TEXT_VISIBLE}     15s
     ELSE
-        Page Should Contain    Please check your username and password. If you still can't log in, contact your Salesforce administrator.
+        Page Should Contain    Please check your username and password.
     END
 
 

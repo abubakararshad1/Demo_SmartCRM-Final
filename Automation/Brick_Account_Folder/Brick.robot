@@ -1,7 +1,7 @@
 *** Settings ***
 Library     SeleniumLibrary
 Resource    Brick_Account.resource
-Library    DataDriver   Brick_Data.xlsx    sheet_name=Sheet1
+Library     DataDriver   Brick_Data.xlsx    sheet_name=Sheet1
 Test Template   Search and Create Brick Account
 
 *** Keywords ***
