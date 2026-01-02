@@ -96,6 +96,6 @@ Search and Create Medical Contact
 
 *** Test Cases ***
 Medical Test Case Using ${FIRST_NAME} ${LAST_NAME}
-    [Documentation]    Test has only tag 'requirement: 42'.
-    [Tags]    smoke
+    [Documentation]    Verify user Can Search and Create a New Contact/Physician contact , If It Does Not Exist - Test has only tag 'requirement: 42'.
+    [Tags]    Smoke Regression
     Search and Create Medical Contact

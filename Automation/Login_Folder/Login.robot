@@ -29,6 +29,6 @@ Login Scenario
 
 *** Test Cases ***
 Login Test Case Using ${username} and ${password}
-    [Documentation]    Test has only tag 'requirement: 42'.
-    [Tags]    smoke    critical    login
+    [Documentation]    Verify the Login Functionality with  Valid and Invalid User Credentials.
+    [Tags]    Unit    Smoke     Critical
     Login Scenario

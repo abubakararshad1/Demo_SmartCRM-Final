@@ -62,6 +62,6 @@ Search and Create Brick Account
 
 *** Test Cases ***
 Brick Test Case Using ${BRICK_NAME}
-    [Documentation]    Test has only tag 'requirement: 42'.
-    [Tags]    smoke
+    [Documentation]    Verify System Can Search and Create a New Brick.
+    [Tags]    Smoke
     Search and Create Brick Account
