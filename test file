@@ -1,0 +1,4 @@
+*** Settings ***
+Library     SeleniumLibrary
+Resource    ../Contact_Business_Unit_Folder/Contact_Business_Unit.resource
+Resource    ../Marketing_Cycle_Folder/Marketing_Cycle.resource

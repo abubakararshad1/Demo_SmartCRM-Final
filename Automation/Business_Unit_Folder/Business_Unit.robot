@@ -99,8 +99,7 @@ Search and Create Business Unit
 #    ...    Create Business Unit     ${Business_Unit_Name}
 
 *** Test Cases ***
-#Business Unit Test Case Using ${BU_NAME}
-Create Business Unit Using ${BU_NAME}
-    [Documentation]    Test has only tag 'requirement: 42'.
-    [Tags]    smoke
+Business Unit Test Case Using ${BU_NAME}
+    [Documentation]    Verify that user Can Search and Create a New Business Unit.
+    [Tags]    Smoke     Regression
     Search and Create Business Unit

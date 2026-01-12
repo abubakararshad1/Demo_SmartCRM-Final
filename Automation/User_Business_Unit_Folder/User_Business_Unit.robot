@@ -3,8 +3,7 @@ Library     SeleniumLibrary
 Resource    User_Business_Unit.resource
 
 *** Test Cases ***
-#user Business Unit Test Case For ${BU_NAME}
-Create User Business Unit For ${BU_NAME}
-    [Documentation]    Test has only tag 'requirement: 42'.
+User Business Unit Test Case For ${BU_NAME}
+    [Documentation]     Verify that user Can Search and Create User BU, If It Does Not Exist.
     [Tags]    smoke
     Create User Business Unit
