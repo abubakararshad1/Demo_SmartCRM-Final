@@ -43,3 +43,5 @@ robot --listener allure_robotframework:./allure-results --outputdir ./Report  Au
 
 
 robot -d Output --loglevel TRACE Automation/Login_Folder Automation/Brick_Account_Folder Automation/Hospital_Account_Folder Automation/Contact_Folder Automation/Business_Unit_Folder Automation/User_Business_Unit_Folder Automation/Contact_Business_Unit_Folder Automation/Marketing_Cycle_Folder Automation/Marketing_Cycle_Detail_Folder Automation/Target_KPI_Folder
+
+robot -d Output --name "Automation" Automation/Master_Run --loglevel TRACE Automation/Login_Folder Automation/Brick_Account_Folder Automation/Hospital_Account_Folder Automation/Contact_Folder Automation/Business_Unit_Folder Automation/User_Business_Unit_Folder Automation/Contact_Business_Unit_Folder Automation/Marketing_Cycle_Folder Automation/Marketing_Cycle_Detail_Folder Automation/Target_KPI_Folder

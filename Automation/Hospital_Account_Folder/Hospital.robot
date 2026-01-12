@@ -72,7 +72,8 @@ Search and Create Hospital Account
 
 
 *** Test Cases ***
-Hospital Account Test Case Using ${ACCOUNT_NAME} and ${BRICK_NAME}
+#Hospital Account Test Case Using ${ACCOUNT_NAME} and ${BRICK_NAME}
+Create Hospital Account Using ${ACCOUNT_NAME} and ${BRICK_NAME}
     [Documentation]    Test has only tag 'requirement: 42'.
     [Tags]    smoke
     Search and Create Hospital Account

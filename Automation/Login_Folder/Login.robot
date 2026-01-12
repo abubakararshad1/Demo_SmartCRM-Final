@@ -28,7 +28,7 @@ Login Scenario
 
 
 *** Test Cases ***
-Login Test Case Using ${username} and ${password}
-    [Documentation]    Test has only tag 'requirement: 42'.
+Login Test Case Using ${Status} username and password -- ${username} and ${password}
+    [Documentation]    Verify the Login Functionality with ${Status} username and password.
     [Tags]    smoke    critical    login
     Login Scenario

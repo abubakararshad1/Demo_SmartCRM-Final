@@ -95,7 +95,8 @@ Search and Create Medical Contact
 
 
 *** Test Cases ***
-Medical Test Case Using ${FIRST_NAME} ${LAST_NAME}
+#Medical Test Case Using ${FIRST_NAME} ${LAST_NAME}
+Create Medical Contact Using ${FIRST_NAME} ${LAST_NAME}
     [Documentation]    Test has only tag 'requirement: 42'.
     [Tags]    smoke
     Search and Create Medical Contact

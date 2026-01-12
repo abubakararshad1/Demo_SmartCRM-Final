@@ -31,10 +31,9 @@ ${SEARCH_MC_XPath}      xpath=//a[@title='${MC_NAME}']
 ## Delete Marketing Cycle XPath
 #${DELETE_MC_ACTION_BUTTON_XPATH}    xpath=//button[@class='slds-button slds-button_icon-border-filled fix-slds-button_icon-border-filled slds-button_last']
 #${DELETE_MC_BUTTON_XPATH}     xpath=//a[contains(.,'Delete')]
-
-
 *** Keywords ***
 Create Marketing Cycle
+
     Wait Until Element Is Visible   ${NEW_BUTTON_XPATH}     10s
     Click Element    ${NEW_BUTTON_XPATH}
     Wait Until Page Contains    ${NEW_MC_PAGE}    10s
@@ -45,8 +44,6 @@ Create Marketing Cycle
     Click Element   ${MC_COUNTRY_OPTION_XPATH}
 #    Click Button    xpath=//button[contains(@title,'Select a date for Start Date')]
     Click Button    ${SAVE_BUTTON_XPATH}
-
-
 Search and Create Marketing Cycle
     Sleep    10s
     Click Button    ${APP_LAUNCHER_BUTTON}
@@ -65,7 +62,6 @@ Search and Create Marketing Cycle
     Press Key    ${SEARCH_XPATH}    \\13
     Sleep    5s
     ${MC_exists}=    Run Keyword And Return Status    Element Should Be Visible    ${SEARCH_MC_XPath}
-
 
     Run Keyword If    ${MC_exists}
     ...    Click Element    ${SEARCH_MC_XPath}

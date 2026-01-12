@@ -5,7 +5,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="Robot Framework 7.3.2 (Python 3.13.2 on win32)" name="Generator">
+<meta content="Robot Framework 7.4.1 (Python 3.14.0 on win32)" name="Generator">
 <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKcAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAqAAAAAAAAAAAAAAAAAAAALIAAAD/AAAA4AAAANwAAADcAAAA3AAAANwAAADcAAAA3AAAANwAAADcAAAA4AAAAP8AAACxAAAAAAAAAKYAAAD/AAAAuwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC/AAAA/wAAAKkAAAD6AAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN8AAAD/AAAA+gAAAMMAAAAAAAAAAgAAAGsAAABrAAAAawAAAGsAAABrAAAAawAAAGsAAABrAAAADAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAIsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAANEAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAAAAAAAAMgAAADIAAAAyAAAAMgAAADIAAAAyAAAAMgAAADIAAAAFAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAADwAAAB8AAAAAAAAAGAAAABcAAAAAAAAAH8AAABKAAAAAAAAAAAAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAADCAAAA/wAAACkAAADqAAAA4QAAAAAAAAD7AAAA/wAAALAAAAAGAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAIwAAAP4AAAD/AAAA/wAAAGAAAAAAAAAAAAAAAMkAAAD/AAAAigAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAAAAAAAIAAAAcAAAABkAAAAAAAAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAA2gAAAP8AAAD7AAAAywAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN4AAAD/AAAAqwAAAP8AAACvAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALIAAAD/AAAAsgAAAAAAAAC5AAAA/wAAAMoAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMkAAAD/AAAAvAAAAAAAAAAAAAAAAAAAAKwAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAArQAAAAAAAAAAwAMAAIABAAAf+AAAP/wAAD/8AAAgBAAAP/wAAD/8AAA//AAAJIwAADHEAAA//AAAP/wAAB/4AACAAQAAwAMAAA==">
 <style media="all">
 :root {
@@ -116,15 +116,16 @@ select {
 #header {
     width: 65em;
     height: 3em;
-    margin: 20px 0 6px 0;
+    margin: 1em 0 0 0;
 }
 h1 {
     float: left;
-    margin: 0 0 0.5em 0;
+    margin: 0 0 1em 0;
     width: 75%;
 }
 h2 {
     clear: left;
+    margin: 1.5em 0 0.5em 0;
 }
 #generated {
     float: right;
@@ -168,7 +169,13 @@ h2 {
     background-color: var(--primary-color);
     border-radius: 3px;
 }
-.label.debug, .label.trace, .label.error, .label.keyword {
+/* https://stackoverflow.com/questions/75238633 */
+@supports (-moz-appearance: none) {
+    .label {
+        padding-top: 4px;
+    }
+}
+.label.debug, .label.trace, .label.error {
     letter-spacing: 0;
 }
 .label.pass, .label.fail, .label.error, .label.skip, .label.warn {
@@ -354,19 +361,6 @@ th.stats-col-graph:hover {
 [data-theme="dark"] .light-mode-icon,
 [data-theme="light"] .dark-mode-icon {
     display: block;
-}
-@keyframes highlight {
-    0% {
-        background: var(--primary-color)
-    }
-    100% {
-        background: var(--target-color);
-    }
-}
-:target {
-    background: var(--target-color);
-    transition: background 0.3s;
-    animation: highlight 4s;
 }
 </style>
 <style media="all">
@@ -957,7 +951,7 @@ window.model = (function () {
         kw.type = data.type;
         kw.template = 'keywordTemplate';
         kw.arguments = data.args;
-        kw.assign = data.assign + (data.assign ? ' =  ' : '');
+        kw.assign = data.assign;
         kw.tags = data.tags;
         kw.timeout = data.timeout;
         kw.populateKeywords = createIterablePopulator('Keyword');
@@ -1696,7 +1690,7 @@ function addStatistics() {
         '<th class="stats-col-elapsed">Elapsed</th>' +
         '<th class="stats-col-graph">Pass / Fail / Skip</th>';
     var statTable =
-        '<h2>{Test} Statistics</h2>' +
+        '<h2>Statistics</h2>' +
         '<table class="statistics" id="total-stats"><thead><tr>' +
         '<th class="stats-col-name">Total Statistics</th>' + statHeaders +
         '</tr></thead></table>' +
@@ -1706,7 +1700,7 @@ function addStatistics() {
         '<table class="statistics" id="suite-stats"><thead><tr>' +
         '<th class="stats-col-name">Statistics by Suite</th>' + statHeaders +
         '</tr></thead></table>';
-    $(testOrTask(statTable)).appendTo('#statistics-container');
+    $(statTable).appendTo('#statistics-container');
     util.map(['total', 'tag', 'suite'], addStatTable);
     addTooltipsToElapsedTimes();
     enableStatisticsSorter();
@@ -1887,22 +1881,22 @@ storage = function () {
 window.output = {};
 </script>
 <script type="text/javascript">
-window.output["suite"] = [1,0,0,0,[],[1,0,569267],[[2,3,4,0,[],[1,30,62733],[[5,6,7,0,[],[1,33,62730],[],[[8,0,9,[10,11,12],[1,22013,2937],[]],[13,0,9,[10,11,12],[1,24950,2216],[]],[14,0,9,[10,11,12],[1,27167,2201],[]],[15,0,9,[10,11,12],[1,29368,33393],[]]],[],[4,4,0,0]]],[],[],[4,4,0,0]],[16,17,18,0,[],[1,62765,107534],[[19,20,21,0,[],[1,62767,107530],[],[[22,0,9,[12],[1,62792,55682],[]],[23,0,9,[12],[1,118475,51821],[]]],[],[2,2,0,0]]],[],[],[2,2,0,0]],[24,25,26,0,[],[1,170300,83702],[[27,28,29,0,[],[1,170304,83697],[],[[30,0,9,[12],[1,170335,41757],[]],[31,0,9,[12],[1,212093,41907],[]]],[],[2,2,0,0]]],[],[],[2,2,0,0]],[32,33,34,0,[],[1,254003,85220],[[35,36,37,0,[],[1,254007,85215],[],[[38,0,9,[12],[1,254069,43796],[]],[39,0,9,[12],[1,297867,41354],[]]],[],[2,2,0,0]]],[],[],[2,2,0,0]],[40,41,42,0,[],[1,339224,39673],[[43,44,45,0,[],[1,339226,39669],[],[[46,0,9,[12],[1,339237,39658],[]]],[],[1,1,0,0]]],[],[],[1,1,0,0]],[47,48,49,0,[],[1,378898,15147],[[50,51,52,0,[],[1,378901,15143],[],[[53,0,9,[12],[1,378922,15121],[]]],[],[1,1,0,0]]],[],[],[1,1,0,0]],[54,55,56,0,[],[1,394046,114730],[[57,58,59,0,[],[1,394048,114727],[],[[60,0,9,[],[1,394075,57486],[]],[60,0,9,[],[1,451562,57213],[]]],[],[2,2,0,0]]],[],[],[2,2,0,0]],[61,62,63,0,[],[1,508777,32068],[[64,65,66,0,[],[1,508779,32064],[],[[67,0,9,[12],[1,508786,32056],[]]],[],[1,1,0,0]]],[],[],[1,1,0,0]],[68,69,70,0,[],[1,540846,8216],[[71,72,73,0,[],[1,540849,8212],[],[[74,0,9,[12],[1,540865,8196],[]]],[],[1,1,0,0]]],[],[],[1,1,0,0]],[75,76,77,0,[],[1,549062,20203],[[78,79,80,0,[],[1,549064,20201],[],[[81,0,9,[12],[1,549078,20185],[]]],[],[1,1,0,0]]],[],[],[1,1,0,0]]],[],[],[17,17,0,0]];
+window.output["suite"] = [1,0,0,0,[],[0,0,105056],[[2,3,4,0,[],[0,61,64205],[[5,6,7,0,[],[0,62,64202],[],[[8,0,9,[10,11,12],[1,13011,3818],[]],[13,0,9,[10,11,12],[1,16830,2590],[]],[14,0,9,[10,11,12],[1,19421,2234],[]],[15,0,9,[10,11,12],[0,21656,42607,16],[]]],[],[4,3,1,0]]],[],[],[4,3,1,0]],[17,18,19,0,[],[0,64267,20523],[[20,21,22,0,[],[0,64269,20521],[],[[23,0,24,[12],[0,64307,10370,25],[]],[26,0,24,[12],[0,74678,10110,25],[]]],[],[2,0,2,0]]],[],[],[2,0,2,0]],[27,28,29,0,[],[0,84791,20264],[[30,31,32,0,[],[0,84793,20262],[],[[33,0,24,[12],[0,84827,10110,25],[]],[34,0,24,[12],[0,94937,10116,25],[]]],[],[2,0,2,0]]],[],[],[2,0,2,0]]],[],[],[8,3,5,0]];
 </script>
 <script type="text/javascript">
 window.output["strings"] = [];
 </script>
 <script type="text/javascript">
-window.output["strings"] = window.output["strings"].concat(["*","eNrzyU/PzFNwy89JSS1SUEvMLbBWcCrKTM5WcExOzi/NK0GV8sgvLsgsSczBLuucn1eSmIwm6FRanJmXWlysEJqXiSYVWgxk4pGHmYdHiW9iUXZqSWZeuoJzZXJOKn5Jl9SSxMwcVDUhiUXpqSUK3gGeUHEAqZ1ejw==","*Login Folder","*C:\\Users\\Abubakar.Arshad\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Login_Folder","*../Automation/Login_Folder","*Login","*C:\\Users\\Abubakar.Arshad\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Login_Folder\\Login.robot","*../Automation/Login_Folder/Login.robot","*Login Test Case Using Admin and 123","*<p>Test has only tag 'requirement: 42'.\x3c/p>","*critical","*login","*smoke","*Login Test Case Using adm and 123","*Login Test Case Using Admin and admin123","*Login Test Case Using qasmart.zee@bssuniversal.com and Bss@2025-1","*Brick Account Folder","*C:\\Users\\Abubakar.Arshad\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Brick_Account_Folder","*../Automation/Brick_Account_Folder","*Brick","*C:\\Users\\Abubakar.Arshad\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Brick_Account_Folder\\Brick.robot","*../Automation/Brick_Account_Folder/Brick.robot","*Brick Test Case Using Brick-CareZone","*Brick Test Case Using Brick-HealthCluster","*Hospital Account Folder","*C:\\Users\\Abubakar.Arshad\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Hospital_Account_Folder","*../Automation/Hospital_Account_Folder","*Hospital","*C:\\Users\\Abubakar.Arshad\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Hospital_Account_Folder\\Hospital.robot","*../Automation/Hospital_Account_Folder/Hospital.robot","*Hospital Account Test Case Using Doctor Hospital and Brick-CareZone","*Hospital Account Test Case Using Alpha Care Hospital and Brick-HealthCluster","*Contact Folder","*C:\\Users\\Abubakar.Arshad\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Contact_Folder","*../Automation/Contact_Folder","*Medical Contact","*C:\\Users\\Abubakar.Arshad\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Contact_Folder\\Medical_Contact.robot","*../Automation/Contact_Folder/Medical_Contact.robot","*Medical Test Case Using Marguerite McIntosh","*Medical Test Case Using Lisa Ruffridge","*Business Unit Folder","*C:\\Users\\Abubakar.Arshad\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Business_Unit_Folder","*../Automation/Business_Unit_Folder","*Business Unit","*C:\\Users\\Abubakar.Arshad\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Business_Unit_Folder\\Business_Unit.robot","*../Automation/Business_Unit_Folder/Business_Unit.robot","*Business Unit Test Case Using AE-ENT &amp; Gastro","*User Business Unit Folder","*C:\\Users\\Abubakar.Arshad\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\User_Business_Unit_Folder","*../Automation/User_Business_Unit_Folder","*User Business Unit","*C:\\Users\\Abubakar.Arshad\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\User_Business_Unit_Folder\\User_Business_Unit.robot","*../Automation/User_Business_Unit_Folder/User_Business_Unit.robot","*User Business Unit Test Case For AE-ENT &amp; Gastro","*Contact Business Unit Folder","*C:\\Users\\Abubakar.Arshad\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Contact_Business_Unit_Folder","*../Automation/Contact_Business_Unit_Folder","*Contact Business Unit","*C:\\Users\\Abubakar.Arshad\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Contact_Business_Unit_Folder\\Contact_Business_Unit.robot","*../Automation/Contact_Business_Unit_Folder/Contact_Business_Unit.robot","*Create Contact Business Unit Test Case","*Marketing Cycle Folder","*C:\\Users\\Abubakar.Arshad\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Marketing_Cycle_Folder","*../Automation/Marketing_Cycle_Folder","*Marketing Cycle","*C:\\Users\\Abubakar.Arshad\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Marketing_Cycle_Folder\\Marketing_Cycle.robot","*../Automation/Marketing_Cycle_Folder/Marketing_Cycle.robot","*Create Marketing Cycle","*Marketing Cycle Detail Folder","*C:\\Users\\Abubakar.Arshad\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Marketing_Cycle_Detail_Folder","*../Automation/Marketing_Cycle_Detail_Folder","*Marketing Cycle Detail","*C:\\Users\\Abubakar.Arshad\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Marketing_Cycle_Detail_Folder\\Marketing_Cycle_Detail.robot","*../Automation/Marketing_Cycle_Detail_Folder/Marketing_Cycle_Detail.robot","*Create Marketing Cycle Detail","*Target KPI Folder","*C:\\Users\\Abubakar.Arshad\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Target_KPI_Folder","*../Automation/Target_KPI_Folder","*Target KPI","*C:\\Users\\Abubakar.Arshad\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Target_KPI_Folder\\Target_KPI.robot","*../Automation/Target_KPI_Folder/Target_KPI.robot","*Create Target KPI"]);
+window.output["strings"] = window.output["strings"].concat(["*","*Demo_SmartCRM-Final","*Login Folder","*C:\\Users\\Ahmad.Raza\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Login_Folder","*../Automation/Login_Folder","*Login","*C:\\Users\\Ahmad.Raza\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Login_Folder\\Login.robot","*../Automation/Login_Folder/Login.robot","*Login Test Case Using Invalid username and password -- Admin and 123","*<p>Verify the Login Functionality with ${Status} username and password.\x3c/p>","*critical","*login","*smoke","*Login Test Case Using Invalid username and password -- adm and 123","*Login Test Case Using Invalid username and password -- Admin and admin123","*Login Test Case Using Valid username and password -- qasmart.zee@bssuniversal.com and Bss@2025-1","*Element 'xpath=//div[contains(@class,'slds-no-print oneAppNavContainer')]//child::span[@title='CRM']' not visible after 10 seconds.","*Brick Account Folder","*C:\\Users\\Ahmad.Raza\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Brick_Account_Folder","*../Automation/Brick_Account_Folder","*Brick","*C:\\Users\\Ahmad.Raza\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Brick_Account_Folder\\Brick.robot","*../Automation/Brick_Account_Folder/Brick.robot","*Create Brick Using Brick-CareZone","*<p>Test has only tag 'requirement: 42'.\x3c/p>","*Button with locator 'xpath=//button[@title='App Launcher']' not found.","*Create Brick Using Brick-HealthCluster","*Hospital Account Folder","*C:\\Users\\Ahmad.Raza\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Hospital_Account_Folder","*../Automation/Hospital_Account_Folder","*Hospital","*C:\\Users\\Ahmad.Raza\\PycharmProjects\\Demo_SmartCRM-Final\\Automation\\Hospital_Account_Folder\\Hospital.robot","*../Automation/Hospital_Account_Folder/Hospital.robot","*Create Hospital Account Using Doctor Hospital and Brick-CareZone","*Create Hospital Account Using Alpha Care Hospital and Brick-HealthCluster"]);
 </script>
 <script type="text/javascript">
-window.output["stats"] = [[{"elapsed":"00:09:07","fail":0,"label":"All Tests","pass":17,"skip":0}],[{"elapsed":"00:00:41","fail":0,"label":"critical","pass":4,"skip":0},{"elapsed":"00:00:41","fail":0,"label":"login","pass":4,"skip":0},{"elapsed":"00:07:12","fail":0,"label":"smoke","pass":15,"skip":0}],[{"elapsed":"00:09:29","fail":0,"id":"s1","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder","name":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder","pass":17,"skip":0},{"elapsed":"00:01:03","fail":0,"id":"s1-s1","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder.Login Folder","name":"Login Folder","pass":4,"skip":0},{"elapsed":"00:01:03","fail":0,"id":"s1-s1-s1","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder.Login Folder.Login","name":"Login","pass":4,"skip":0},{"elapsed":"00:01:48","fail":0,"id":"s1-s2","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder.Brick Account Folder","name":"Brick Account Folder","pass":2,"skip":0},{"elapsed":"00:01:48","fail":0,"id":"s1-s2-s1","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder.Brick Account Folder.Brick","name":"Brick","pass":2,"skip":0},{"elapsed":"00:01:24","fail":0,"id":"s1-s3","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder.Hospital Account Folder","name":"Hospital Account Folder","pass":2,"skip":0},{"elapsed":"00:01:24","fail":0,"id":"s1-s3-s1","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder.Hospital Account Folder.Hospital","name":"Hospital","pass":2,"skip":0},{"elapsed":"00:01:25","fail":0,"id":"s1-s4","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder.Contact Folder","name":"Contact Folder","pass":2,"skip":0},{"elapsed":"00:01:25","fail":0,"id":"s1-s4-s1","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder.Contact Folder.Medical Contact","name":"Medical Contact","pass":2,"skip":0},{"elapsed":"00:00:40","fail":0,"id":"s1-s5","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder.Business Unit Folder","name":"Business Unit Folder","pass":1,"skip":0},{"elapsed":"00:00:40","fail":0,"id":"s1-s5-s1","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder.Business Unit Folder.Business Unit","name":"Business Unit","pass":1,"skip":0},{"elapsed":"00:00:15","fail":0,"id":"s1-s6","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder.User Business Unit Folder","name":"User Business Unit Folder","pass":1,"skip":0},{"elapsed":"00:00:15","fail":0,"id":"s1-s6-s1","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder.User Business Unit Folder.User Business Unit","name":"User Business Unit","pass":1,"skip":0},{"elapsed":"00:01:55","fail":0,"id":"s1-s7","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder.Contact Business Unit Folder","name":"Contact Business Unit Folder","pass":2,"skip":0},{"elapsed":"00:01:55","fail":0,"id":"s1-s7-s1","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder.Contact Business Unit Folder.Contact Business Unit","name":"Contact Business Unit","pass":2,"skip":0},{"elapsed":"00:00:32","fail":0,"id":"s1-s8","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder.Marketing Cycle Folder","name":"Marketing Cycle Folder","pass":1,"skip":0},{"elapsed":"00:00:32","fail":0,"id":"s1-s8-s1","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder.Marketing Cycle Folder.Marketing Cycle","name":"Marketing Cycle","pass":1,"skip":0},{"elapsed":"00:00:08","fail":0,"id":"s1-s9","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder.Marketing Cycle Detail Folder","name":"Marketing Cycle Detail Folder","pass":1,"skip":0},{"elapsed":"00:00:08","fail":0,"id":"s1-s9-s1","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder.Marketing Cycle Detail Folder.Marketing Cycle Detail","name":"Marketing Cycle Detail","pass":1,"skip":0},{"elapsed":"00:00:20","fail":0,"id":"s1-s10","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder.Target KPI Folder","name":"Target KPI Folder","pass":1,"skip":0},{"elapsed":"00:00:20","fail":0,"id":"s1-s10-s1","label":"Login Folder &amp; Brick Account Folder &amp; Hospital Account Folder &amp; Contact Folder &amp; Business Unit Folder &amp; User Business Unit Folder &amp; Contact Business Unit Folder &amp; Marketing Cycle Folder &amp; Marketing Cycle Detail Folder &amp; Target KPI Folder.Target KPI Folder.Target KPI","name":"Target KPI","pass":1,"skip":0}]];
+window.output["stats"] = [[{"elapsed":"00:01:32","fail":5,"label":"All Tests","pass":3,"skip":0}],[{"elapsed":"00:00:51","fail":1,"label":"critical","pass":3,"skip":0},{"elapsed":"00:00:51","fail":1,"label":"login","pass":3,"skip":0},{"elapsed":"00:01:32","fail":5,"label":"smoke","pass":3,"skip":0}],[{"elapsed":"00:01:45","fail":5,"id":"s1","label":"Demo_SmartCRM-Final","name":"Demo_SmartCRM-Final","pass":3,"skip":0},{"elapsed":"00:01:04","fail":1,"id":"s1-s1","label":"Demo_SmartCRM-Final.Login Folder","name":"Login Folder","pass":3,"skip":0},{"elapsed":"00:01:04","fail":1,"id":"s1-s1-s1","label":"Demo_SmartCRM-Final.Login Folder.Login","name":"Login","pass":3,"skip":0},{"elapsed":"00:00:21","fail":2,"id":"s1-s2","label":"Demo_SmartCRM-Final.Brick Account Folder","name":"Brick Account Folder","pass":0,"skip":0},{"elapsed":"00:00:21","fail":2,"id":"s1-s2-s1","label":"Demo_SmartCRM-Final.Brick Account Folder.Brick","name":"Brick","pass":0,"skip":0},{"elapsed":"00:00:20","fail":2,"id":"s1-s3","label":"Demo_SmartCRM-Final.Hospital Account Folder","name":"Hospital Account Folder","pass":0,"skip":0},{"elapsed":"00:00:20","fail":2,"id":"s1-s3-s1","label":"Demo_SmartCRM-Final.Hospital Account Folder.Hospital","name":"Hospital","pass":0,"skip":0}]];
 </script>
 <script type="text/javascript">
-window.output["baseMillis"] = 1764913009106;
+window.output["baseMillis"] = 1768220063319;
 </script>
 <script type="text/javascript">
-window.output["generated"] = 569360;
+window.output["generated"] = 105175;
 </script>
 <script type="text/javascript">
 window.output["expand_keywords"] = null;
@@ -2285,7 +2279,7 @@ function hideHiddenDetailsColumns(elem) {
 </script>
 
 <script type="text/x-jquery-tmpl" id="summaryTableTemplate">
-  <h2>Summary Information</h2>
+  <h2>Summary</h2>
   <table class="details">
     <tr>
       <th>Status:</th>
@@ -2382,7 +2376,7 @@ function hideHiddenDetailsColumns(elem) {
 </script>
 
 <script type="text/x-jquery-tmpl" id="detailsHeaderTemplate">
-  <h2 id="${linkTarget}">{{= testOrTask('{Test} Details')}}</h2>
+  <h2 id="${linkTarget}">Details</h2>
   <ul id="detail-tabs">
     <li class="${totalTabStatus} detail-tab">
       <a href="#totals" onclick="renderTotalSelector()"
