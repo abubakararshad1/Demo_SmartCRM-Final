@@ -61,7 +61,7 @@ Search and Create Brick Account
     ...    Create Brick    ${BRICK_NAME}    ${BRICK_DESCRIPTION}
 
 *** Test Cases ***
-Brick Test Case Using ${BRICK_NAME}
+Verify that User Can Search and Create a New Brick (${BRICK_NAME})
     [Documentation]    Verify System Can Search and Create a New Brick.
     [Tags]    Smoke
     Search and Create Brick Account

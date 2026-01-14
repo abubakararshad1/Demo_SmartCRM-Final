@@ -28,7 +28,7 @@ Login Scenario
 
 
 *** Test Cases ***
-Login Test Case Using ${username} and ${password}
+Verify the Login Functionality with ${Status} Username and Password
     [Documentation]    Verify the Login Functionality with  Valid and Invalid User Credentials.
     [Tags]    Unit    Smoke     Critical
     Login Scenario

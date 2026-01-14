@@ -3,7 +3,7 @@ Library     SeleniumLibrary
 Resource    Marketing_Cycle.resource
 
 *** Test Cases ***
-Create Marketing Cycle
+Verify that user Can Search and Create a marketing cycle.
     [Documentation]    Verify that user Can Search and Create a marketing cycle.
     [Tags]    Unit  Smoke
     Search and Create Marketing Cycle

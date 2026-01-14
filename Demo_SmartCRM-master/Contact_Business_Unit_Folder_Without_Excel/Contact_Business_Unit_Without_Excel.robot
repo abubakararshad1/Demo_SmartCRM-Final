@@ -1,6 +1,6 @@
 *** Settings ***
 Library     SeleniumLibrary
-#Resource    ../Contact_Folder/Medical_Contact.robot
+#Resource    ../Contact_Folder/Medical_Contact_TestCases.robot
 Resource    Contact_Business_Unit.resource
 #Library    DataDriver   ../Contact_Folder/Medical_Contact_Data.xlsx    sheet_name=Sheet1
 #Test Template       Click on Contact Related Tab

@@ -42,4 +42,8 @@ robot --listener allure_robotframework:./allure-results --outputdir ./Report  Au
 robot --listener allure_robotframework:./allure-results --outputdir ./Report  Automation/Login_Folder Automation/Brick_Account_Folder Automation/Hospital_Account_Folder Automation/Contact_Folder Automation/Business_Unit_Folder Automation/User_Business_Unit_Folder Automation/Contact_Business_Unit_Folder Automation/Marketing_Cycle_Folder Automation/Marketing_Cycle_Detail_Folder Automation/Target_KPI_Folder
 
 
+
 robot -d Output --loglevel TRACE Automation/Login_Folder Automation/Brick_Account_Folder Automation/Hospital_Account_Folder Automation/Contact_Folder Automation/Business_Unit_Folder Automation/User_Business_Unit_Folder Automation/Contact_Business_Unit_Folder Automation/Marketing_Cycle_Folder Automation/Marketing_Cycle_Detail_Folder Automation/Target_KPI_Folder
+
+
+robot -d Output --name "Demo_SmartCRM-Final" Automation/Login_Folder/Login_TestCases.robot Automation/Brick_Account_Folder/Brick_TestCases.robot Automation/Hospital_Account_Folder/Hospital_TestCases.robot Automation/Contact_Folder/Medical_Contact_TestCases.robot Automation/Business_Unit_Folder/Business_Unit_TestCases.robot Automation/User_Business_Unit_Folder/User_Business_Unit_TestCases.robot Automation/Contact_Business_Unit_Folder/Contact_Business_Unit_TestCases.robot Automation/Marketing_Cycle_Folder/Marketing_Cycle_TestCases.robot Automation/Marketing_Cycle_Detail_Folder/Marketing_Cycle_Detail_TestCases.robot Automation/Target_KPI_Folder/Target_KPI_TestCases.robot

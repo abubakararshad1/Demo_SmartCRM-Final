@@ -99,7 +99,7 @@ Search and Create Business Unit
 #    ...    Create Business Unit     ${Business_Unit_Name}
 
 *** Test Cases ***
-Business Unit Test Case Using ${BU_NAME}
+ Verify that user Can Search and Create a New Business Unit (${BU_NAME})
     [Documentation]    Verify that user Can Search and Create a New Business Unit.
     [Tags]    Smoke     Regression
     Search and Create Business Unit

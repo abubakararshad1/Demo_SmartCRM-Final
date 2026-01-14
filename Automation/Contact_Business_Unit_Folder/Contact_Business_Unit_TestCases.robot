@@ -1,6 +1,6 @@
 *** Settings ***
 Library     SeleniumLibrary
-#Resource    ../Contact_Folder/Medical_Contact.robot
+#Resource    ../Contact_Folder/Medical_Contact_TestCases.robot
 Resource    Contact_Business_Unit.resource
 Library    DataDriver   ../Contact_Folder/Medical_Contact_Data.xlsx    sheet_name=Sheet1
 Test Template       Click on Contact Related Tab
@@ -89,7 +89,7 @@ Create Contact Business Unit
     END
 
 *** Test Cases ***
-Create Contact Business Unit Test Case
+Verify that user Can Search and Create a New Contact Business Unit
     [Documentation]    Verify that user Can Search and Create a New Contact Business Unit, If It Does Not Exist - Test has only tag 'requirement: 42'.
     [Tags]    Smoke     Regression
     Click on Contact Related Tab

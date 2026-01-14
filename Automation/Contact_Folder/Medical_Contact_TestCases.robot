@@ -95,7 +95,7 @@ Search and Create Medical Contact
 
 
 *** Test Cases ***
-Verify user Can Search and Create a New Contact (${FIRST_NAME} ${LAST_NAME})
+Verify user Can Search and Create a New Medical Contact (${FIRST_NAME} ${LAST_NAME})
     [Documentation]    Verify user Can Search and Create a New Contact/Physician contact , If It Does Not Exist - Test has only tag 'requirement: 42'.
     [Tags]    Smoke Regression
     Search and Create Medical Contact
