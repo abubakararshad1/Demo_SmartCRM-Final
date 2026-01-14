@@ -1,7 +1,10 @@
 *** Settings ***
 Library    SeleniumLibrary
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 *** Variables ***
 # Login Folder XPath
 ${USERNAME_XPATH}    xpath=//*[@id="username"]
@@ -17,3 +20,7 @@ Open My Browser
     Open Browser    https://raptorsconsulting--qasmartcrm.sandbox.lightning.force.com/      Chrome      options=add_experimental_option("detach", True)
 #    Open Browser    https://test.salesforce.com/    Edge
     Maximize Browser Window
+<<<<<<< HEAD
+=======
+
+>>>>>>> master

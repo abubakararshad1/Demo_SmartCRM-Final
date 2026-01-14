@@ -102,4 +102,8 @@ Resource    Contact_Business_Unit.resource
 Create Contact Business Unit Test Case
     [Documentation]    Test has only tag 'requirement: 42'.
     Click on Contact Related Tab
+<<<<<<< HEAD
     Create Contact Business Unit
+=======
+    Create Contact Business Unit
+>>>>>>> master

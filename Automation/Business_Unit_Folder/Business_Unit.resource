@@ -8,9 +8,15 @@ ${NEW_BU_PAGE}  New Business Unit
 ${BU_NAME_XPATH}     xpath=//input[@name='Name']
 ${BU_NAME}       AE-ENT & Gastro
 ${START_DATE_XPATH}     xpath=//input[@name='Start_Date__c']
+<<<<<<< HEAD
 ${START_DATE_OPTION}     2025-03-01
 ${END_DATE_XPATH}     xpath=//input[@name='End_Date__c']
 ${END_DATE_OPTION}     2025-10-31
+=======
+${START_DATE_OPTION}     2026-01-01
+${END_DATE_XPATH}     xpath=//input[@name='End_Date__c']
+${END_DATE_OPTION}     2026-12-31
+>>>>>>> master
 
 # Search Business Unit XPath
 ${ENTER_BU_TEXT}    Business Unit

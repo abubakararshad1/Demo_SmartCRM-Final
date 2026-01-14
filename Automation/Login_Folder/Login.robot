@@ -20,15 +20,26 @@ Login Scenario
 
         # Continue only after you confirm (after entering OTP)
 
+<<<<<<< HEAD
         Wait Until Element Is Visible    ${CRM_TEXT_VISIBLE}     10s
     ELSE
         Page Should Contain    Please check your username and password. If you still can't log in, contact your Salesforce administrator.
+=======
+        Wait Until Element Is Visible    ${CRM_TEXT_VISIBLE}     15s
+    ELSE
+        Page Should Contain    Please check your username and password.
+>>>>>>> master
     END
 
 
 
 *** Test Cases ***
 Login Test Case Using ${username} and ${password}
+<<<<<<< HEAD
     [Documentation]    Test has only tag 'requirement: 42'.
     [Tags]    smoke    critical    login
+=======
+    [Documentation]    Verify the Login Functionality with  Valid and Invalid User Credentials.
+    [Tags]    Unit    Smoke     Critical
+>>>>>>> master
     Login Scenario

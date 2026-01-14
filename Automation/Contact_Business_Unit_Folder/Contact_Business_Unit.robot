@@ -90,5 +90,10 @@ Create Contact Business Unit
 
 *** Test Cases ***
 Create Contact Business Unit Test Case
+<<<<<<< HEAD
     [Documentation]    Test has only tag 'requirement: 42'.
+=======
+    [Documentation]    Verify that user Can Search and Create a New Contact Business Unit, If It Does Not Exist - Test has only tag 'requirement: 42'.
+    [Tags]    Smoke     Regression
+>>>>>>> master
     Click on Contact Related Tab

@@ -4,8 +4,13 @@ Resource    Marketing_Cycle.resource
 
 *** Test Cases ***
 Create Marketing Cycle
+<<<<<<< HEAD
     [Documentation]    Test has only tag 'requirement: 42'.
     [Tags]    smoke
+=======
+    [Documentation]    Verify that user Can Search and Create a marketing cycle.
+    [Tags]    Unit  Smoke
+>>>>>>> master
     Search and Create Marketing Cycle
 #    Log To Console    >>> Calling pop up scrolling
 #    Pop up Scrolling

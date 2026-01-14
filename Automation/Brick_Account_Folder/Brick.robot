@@ -1,7 +1,11 @@
 *** Settings ***
 Library     SeleniumLibrary
 Resource    Brick_Account.resource
+<<<<<<< HEAD
 Library    DataDriver   Brick_Data.xlsx    sheet_name=Sheet1
+=======
+Library     DataDriver   Brick_Data.xlsx    sheet_name=Sheet1
+>>>>>>> master
 Test Template   Search and Create Brick Account
 
 *** Keywords ***
@@ -62,6 +66,11 @@ Search and Create Brick Account
 
 *** Test Cases ***
 Brick Test Case Using ${BRICK_NAME}
+<<<<<<< HEAD
     [Documentation]    Test has only tag 'requirement: 42'.
     [Tags]    smoke
+=======
+    [Documentation]    Verify System Can Search and Create a New Brick.
+    [Tags]    Smoke
+>>>>>>> master
     Search and Create Brick Account

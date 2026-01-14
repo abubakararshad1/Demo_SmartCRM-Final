@@ -73,7 +73,12 @@ Search and Create Hospital Account
 
 *** Test Cases ***
 Hospital Account Test Case Using ${ACCOUNT_NAME} and ${BRICK_NAME}
+<<<<<<< HEAD
     [Documentation]    Test has only tag 'requirement: 42'.
     [Tags]    smoke
+=======
+    [Documentation]    Verify user Can Search and Create a New Hospital, If It Does Not Exist - Test has only tag 'requirement: 42'.
+    [Tags]    Smoke
+>>>>>>> master
     Search and Create Hospital Account
 

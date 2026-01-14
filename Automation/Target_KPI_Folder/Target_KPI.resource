@@ -67,7 +67,10 @@ Create Target KPI
             ${is_bu_match}=    Run Keyword And Return Status    Should Be Equal     ${bu_text}      ${BU_NAME}
             ${is_month_match}=    Run Keyword And Return Status    Should Be Equal    ${month_text}    ${TARGET_KPI_MONTH_NAME}
             ${is_year_match}=     Run Keyword And Return Status    Should Be Equal    ${year_text}    ${TARGET_KPI_YEAR_NAME}
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
             ${match_found}=    Evaluate    ${is_bu_match} and ${is_month_match} and ${is_year_match}
             Exit For Loop If    ${match_found}
         END
@@ -98,6 +101,7 @@ Create Target KPI
 
     ELSE
             Log    Matching Target KPI already exists. Skipping creation.
+<<<<<<< HEAD
     END
 
 
@@ -106,3 +110,6 @@ Create Target KPI
 
 
 
+=======
+    END
+>>>>>>> master
